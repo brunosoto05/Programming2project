@@ -322,3 +322,100 @@ void guardarDatosRepuestos() {
     archivo.close();
 }
 
+void guardarCambios() {
+    guardarDatosVehiculos();
+    guardarDatosClientes();
+    guardarDatosRepuestos();
+}
+
+// Función para obtener la fecha y hora actual
+string obtenerFechaHoraActual() {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+
+    stringstream fechaHora;
+    fechaHora << 1900 + ltm->tm_year << "-"
+              << 1 + ltm->tm_mon << "-"
+              << ltm->tm_mday << " "
+              << ltm->tm_hour << ":"
+              << ltm->tm_min << ":"
+              << ltm->tm_sec;
+    
+    return fechaHora.str();
+}
+
+// Funciones para asignar/quitar vehículos y vender repuestos
+void asignarVehiculoACliente() {
+    string placa, cedula;
+    cout << "Ingrese la placa del vehículo a asignar: ";
+    cin >> placa;
+    cout << "Ingrese la cédula del cliente: ";
+    cin >> cedula;
+
+    for (int i = 0; i < totalVehiculos; i++) {
+        if (vehiculos[i].placa == placa && !vehiculos[i].rentado) {
+            for (int j = 0; j < totalClientes; j++) {
+                if (clientes[j].cedula == cedula && clientes[j].activo) {
+                    vehiculos[i].rentado = true;
+                    vehiculos[i].cedulaCliente = cedula;
+                    vehiculos[i].fechaEntrega = obtenerFechaHoraActual(); // Asignar la fecha y hora actual
+                    clientes[j].vehiculosRentados++;
+                    cout << "Vehículo asignado correctamente. Fecha de entrega registrada: " << vehiculos[i].fechaEntrega << endl;
+                    return;
+                }
+            }
+            cout << "Cliente no encontrado o no está activo.\n";
+            return;
+        }
+    }
+    cout << "Vehículo no encontrado o ya está rentado.\n";
+}
+
+void quitarVehiculoDeCliente() {
+    string placa;
+    cout << "Ingrese la placa del vehículo a quitar: ";
+    cin >> placa;
+
+    for (int i = 0; i < totalVehiculos; i++) {
+        if (vehiculos[i].placa == placa && vehiculos[i].rentado) {
+            string cedulaCliente = vehiculos[i].cedulaCliente;
+            vehiculos[i].rentado = false;
+            vehiculos[i].cedulaCliente = "";
+            vehiculos[i].fechaEntrega = ""; // Limpiar la fecha de entrega al quitar el vehículo
+            for (int j = 0; j < totalClientes; j++) {
+                if (clientes[j].cedula == cedulaCliente) {
+                    clientes[j].vehiculosRentados--;
+                    cout << "Vehículo quitado correctamente.\n";
+                    return;
+                }
+            }
+        }
+    }
+    cout << "Vehículo no encontrado o no está rentado.\n";
+}
+
+void venderRepuesto() {
+    string modelo;
+    int anio;
+    int cantidad;
+    cout<< "Ingrese el modelo del repuesto: ";
+    cin>> modelo;
+    cout << "Ingrese el año de compatibilidad: ";
+    cin >> anio;
+    cout << "Ingrese la cantidad a vender: ";
+    cin >> cantidad;
+
+    for (int i = 0; i < totalRepuestos; i++) {
+        if (repuestos[i].modeloCompatibilidad == modelo && repuestos[i].anioCompatibilidad == anio) {
+            if (repuestos[i].existencias >= cantidad) {
+                repuestos[i].existencias -= cantidad;
+                cout << "Repuesto vendido correctamente. Existencias restantes: " << repuestos[i].existencias << endl;
+                return;
+            } else {
+                cout << "No hay suficientes existencias para esa cantidad.\n";
+                return;
+            }
+        }
+    }
+    cout << "Repuesto no encontrado.\n";
+}
