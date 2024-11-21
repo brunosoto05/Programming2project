@@ -1,0 +1,41 @@
+Modelo,Marca,Nombre,ModeloCompatibilidad,AnioCompatibilidad,Precio,Existencias
+Civic,Honda,bujías,Sedan,2005,60.25,25
+Accord,Honda,filtro de aceite,SUV,2007,120.40,12
+Camry,Toyota,escobillas limpiaparabrisas,Convertible,2015,35.75,40
+Altima,Nissan,amortiguadores,Sedan,2018,75.30,18
+Wrangler,Jeep,embrague,Truck,2012,245.50,8
+CX-5,Mazda,filtro de aire,SUV,2020,99.99,10
+Cherokee,Jeep,radiador,SUV,2016,150.75,20
+Tacoma,Toyota,correas de distribución,Truck,2009,85.40,30
+Rogue,Nissan,sensor de oxígeno,Hatchback,2014,110.60,15
+Focus,Ford,neumáticos,Sedan,2021,200.75,35
+Fusion,Ford,aceite de motor,Convertible,2017,145.30,25
+Sierra,GMC,embrague,Truck,2010,320.90,12
+CR-V,Honda,bujías,SUV,2019,45.75,30
+RAV4,Toyota,amortiguadores,Sedan,2022,125.30,15
+Explorer,Ford,filtro de aceite,Truck,2015,89.99,8
+Tahoe,Chevrolet,radiador,SUV,2018,300.45,25
+Elantra,Hyundai,escobillas limpiaparabrisas,Hatchback,2020,55.99,12
+Sonata,Hyundai,sensor de oxígeno,Convertible,2021,135.45,20
+Forester,Subaru,filtro de aire,SUV,2017,90.30,10
+Outback,Subaru,correas de distribución,Truck,2018,70.25,15
+Optima,Kia,embrague,Convertible,2016,215.50,18
+Sorento,Kia,neumáticos,SUV,2019,245.75,20
+Compass,Jeep,amortiguadores,SUV,2020,110.99,12
+Equinox,Chevrolet,aceite de motor,Truck,2021,140.75,10
+Silverado,Chevrolet,filtro de aire,Sedan,2022,85.30,20
+CX-9,Mazda,radiador,Truck,2018,275.40,15
+Legacy,Subaru,embrague,Convertible,2020,185.99,12
+Impreza,Subaru,escobillas limpiaparabrisas,SUV,2019,35.25,20
+Highlander,Toyota,sensor de oxígeno,Sedan,2021,110.45,15
+Yaris,Toyota,filtro de aceite,Hatchback,2020,45.30,20
+Sentra,Nissan,correas de distribución,Truck,2017,75.99,25
+Pathfinder,Nissan,neumáticos,SUV,2018,215.75,12
+Tucson,Hyundai,amortiguadores,SUV,2022,115.50,15
+Civic,Honda,embrague,Truck,2021,190.75,10
+Malibu,Chevrolet,radiador,Convertible,2019,250.40,12
+Mustang,Ford,escobillas limpiaparabrisas,Hatchback,2021,65.50,30
+Focus,Ford,aceite de motor,SUV,2020,125.99,15
+Cruze,Chevrolet,filtro de aire,Sedan,2018,95.45,20
+Pilot,Honda,sensor de oxígeno,SUV,2019,115.75,25
+
