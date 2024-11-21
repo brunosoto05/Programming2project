@@ -134,3 +134,110 @@ int main() {
 
     return 0;
 }
+
+// Funciones de carga de datos
+int cargarDatosVehiculos() {
+    ifstream archivo(RUTA_VEHICULOS);
+    string linea;
+    getline(archivo, linea); // Omitir encabezado
+
+    int total = 0;
+    while (getline(archivo, linea) && total < LIMITE_VEHICULOS) {
+        stringstream ss(linea);
+        Vehiculo v;
+        string rentado;
+
+        getline(ss, v.modelo, ',');
+        getline(ss, v.marca, ',');
+        getline(ss, v.placa, ',');
+        getline(ss, v.color, ',');
+        ss >> v.anioFabricacion;
+        ss.ignore();
+        ss >> v.kilometraje;
+        ss.ignore();
+        getline(ss, rentado, ',');
+        v.rentado = (rentado == "true");
+        ss >> v.precioPorDia;
+        ss.ignore();
+        getline(ss, v.cedulaCliente, ',');
+        getline(ss, v.fechaEntrega);
+
+        vehiculos[total++] = v;
+    }
+    archivo.close();
+    return total;
+}
+
+int cargarDatosClientes() {
+    ifstream archivo(RUTA_CLIENTES);
+    string linea;
+    getline(archivo, linea); // Omitir encabezado
+
+    int total = 0;
+    while (getline(archivo, linea) && total < LIMITE_CLIENTES) {
+        stringstream ss(linea);
+        Cliente c;
+
+        getline(ss, c.cedula, ',');
+        getline(ss, c.nombre, ',');
+        getline(ss, c.apellido, ',');
+        getline(ss, c.email, ',');
+        ss >> c.vehiculosRentados;
+        ss.ignore();
+        getline(ss, c.direccion, ',');
+        string activo;
+        getline(ss, activo);
+        c.activo = (activo == "true");
+
+        clientes[total++] = c;
+    }
+    archivo.close();
+    return total;
+}
+
+int cargarDatosRepuestos() {
+    ifstream archivo(RUTA_REPUESTOS);
+    string linea;
+    getline(archivo, linea); // Omitir encabezado
+
+    int total = 0;
+    while (getline(archivo, linea) && total < LIMITE_REPUESTOS) {
+        stringstream ss(linea);
+        Repuesto r;
+
+        getline(ss, r.modelo, ',');
+        getline(ss, r.marca, ',');
+        getline(ss, r.nombre, ',');
+        getline(ss, r.modeloCompatibilidad, ',');
+        ss >> r.anioCompatibilidad;
+        ss.ignore();
+        ss >> r.precio;
+        ss.ignore();
+        ss >> r.existencias;
+
+        repuestos[total++] = r;
+    }
+    archivo.close();
+    return total;
+}
+
+// Funciones para mostrar datos
+void mostrarDatosVehiculo(const Vehiculo &v) {
+    cout << "Modelo: " << v.modelo << ", Marca: " << v.marca << ", Placa: " << v.placa
+         << ", Color: " << v.color << ", Año: " << v.anioFabricacion << ", Kilometraje: " << v.kilometraje
+         << ", Rentado: " << (v.rentado ? "Sí" : "No") << ", Precio por día: $" << v.precioPorDia
+         << ", Cedula cliente: " << v.cedulaCliente << ", Fecha entrega: " << v.fechaEntrega << endl;
+}
+
+void mostrarDatosCliente(const Cliente &c) {
+    cout << "Cedula: " << c.cedula << ", Nombre: " << c.nombre << " " << c.apellido
+         << ", Email: " << c.email << ", Vehículos rentados: " << c.vehiculosRentados
+         << ", Dirección: " << c.direccion << ", Activo: " << (c.activo ? "Sí" : "No") << endl;
+}
+
+void mostrarDatosRepuesto(const Repuesto &r) {
+    cout << "Modelo: " << r.modelo << ", Marca: " << r.marca << ", Nombre: " << r.nombre
+         << ", Modelo compatible: " << r.modeloCompatibilidad << ", Año compatible: " << r.anioCompatibilidad
+         << ", Precio: $" << r.precio << ", Existencias: " << r.existencias << endl;
+}
+
