@@ -70,5 +70,67 @@ void venderRepuesto();
 string obtenerFechaHoraActual();
 
 int main() {
-    
+    totalVehiculos = cargarDatosVehiculos();
+    totalClientes = cargarDatosClientes();
+    totalRepuestos = cargarDatosRepuestos();
+
+    char opcion;
+    do {
+        cout << "Menú principal:\n"
+             << "1. Consultar Vehículos\n"
+             << "2. Consultar Clientes\n"
+             << "3. Consultar Repuestos\n"
+             << "4. Consultar Vehículo por Placa\n"
+             << "5. Consultar Cliente por Cédula\n"
+             << "6. Consultar Repuesto por Modelo y Año\n"
+             << "7. Asignar Vehículo a Cliente\n"
+             << "8. Quitar Vehículo de Cliente\n"
+             << "9. Vender Repuesto\n"
+             << "S. Guardar Cambios\n"
+             << "X. Salir\nOpción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case '1':
+            for (int i = 0; i < totalVehiculos; i++) mostrarDatosVehiculo(vehiculos[i]);
+            break;
+        case '2':
+            for (int i = 0; i < totalClientes; i++) mostrarDatosCliente(clientes[i]);
+            break;
+        case '3':
+            for (int i = 0; i < totalRepuestos; i++) mostrarDatosRepuesto(repuestos[i]);
+            break;
+        case '4':
+            consultarVehiculoPorPlaca();
+            break;
+        case '5':
+            consultarClientePorCedula();
+            break;
+        case '6':
+            consultarRepuestoPorModeloAnio();
+            break;
+        case '7':
+            asignarVehiculoACliente();
+            break;
+        case '8':
+            quitarVehiculoDeCliente();
+            break;
+        case '9':
+            venderRepuesto();
+            break;
+        case 'S':
+        case 's':
+            guardarCambios();
+            cout << "Cambios guardados correctamente.\n";
+            break;
+        case 'X':
+        case 'x':
+            cout << "Saliendo...\n";
+            break;
+        default:
+            cout << "Opción inválida, intente de nuevo.\n";
+        }
+    } while (opcion != 'X' && opcion != 'x');
+
+    return 0;
 }
