@@ -69,3 +69,6 @@ void venderRepuesto();
 // Función para obtener la fecha y hora actual
 string obtenerFechaHoraActual();
 
+int main() {
+    
+}
