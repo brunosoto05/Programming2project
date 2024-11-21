@@ -278,4 +278,47 @@ void consultarRepuestoPorModeloAnio() {
     cout << "Ingrese el año de compatibilidad: ";
     cin >> anio;
 
-    
+    for (int i = 0; i < totalRepuestos; i++) {
+        if (repuestos[i].modeloCompatibilidad == modelo && repuestos[i].anioCompatibilidad == anio) {
+            mostrarDatosRepuesto(repuestos[i]);
+            return;
+        }
+    }
+    cout << "No se encontró ningún repuesto con ese modelo y año.\n";
+}
+
+// Funciones para guardar cambios en los archivos CSV
+void guardarDatosVehiculos() {
+    ofstream archivo(RUTA_VEHICULOS);
+    archivo << "Modelo,Marca,Placa,Color,AñoFabricacion,Kilometraje,Rentado,PrecioPorDia,CedulaCliente,FechaEntrega\n";
+    for (int i = 0; i < totalVehiculos; i++) {
+        archivo << vehiculos[i].modelo << ',' << vehiculos[i].marca << ',' << vehiculos[i].placa << ','
+                << vehiculos[i].color << ',' << vehiculos[i].anioFabricacion << ',' << vehiculos[i].kilometraje << ','
+                << (vehiculos[i].rentado ? "true" : "false") << ',' << vehiculos[i].precioPorDia << ','
+                << vehiculos[i].cedulaCliente << ',' << vehiculos[i].fechaEntrega << '\n';
+    }
+    archivo.close();
+}
+
+void guardarDatosClientes() {
+    ofstream archivo(RUTA_CLIENTES);
+    archivo << "Cedula,Nombre,Apellido,Email,VehiculosRentados,Direccion,Activo\n";
+    for (int i = 0; i < totalClientes; i++) {
+        archivo << clientes[i].cedula << ',' << clientes[i].nombre << ',' << clientes[i].apellido << ','
+                << clientes[i].email << ',' << clientes[i].vehiculosRentados << ',' << clientes[i].direccion << ','
+                << (clientes[i].activo ? "true" : "false") << '\n';
+    }
+    archivo.close();
+}
+
+void guardarDatosRepuestos() {
+    ofstream archivo(RUTA_REPUESTOS);
+    archivo << "Modelo,Marca,Nombre,ModeloCompatibilidad,AnioCompatibilidad,Precio,Existencias\n";
+    for (int i = 0; i < totalRepuestos; i++) {
+        archivo << repuestos[i].modelo << ',' << repuestos[i].marca << ',' << repuestos[i].nombre << ','
+                << repuestos[i].modeloCompatibilidad << ',' << repuestos[i].anioCompatibilidad << ','
+                << repuestos[i].precio << ',' << repuestos[i].existencias << '\n';
+    }
+    archivo.close();
+}
+
