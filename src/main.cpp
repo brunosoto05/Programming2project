@@ -241,3 +241,41 @@ void mostrarDatosRepuesto(const Repuesto &r) {
          << ", Precio: $" << r.precio << ", Existencias: " << r.existencias << endl;
 }
 
+// Funciones para consultas individuales
+void consultarVehiculoPorPlaca() {
+    string placa;
+    cout << "Ingrese la placa del vehículo: ";
+    cin >> placa;
+
+    for (int i = 0; i < totalVehiculos; i++) {
+        if (vehiculos[i].placa == placa) {
+            mostrarDatosVehiculo(vehiculos[i]);
+            return;
+        }
+    }
+    cout << "No se encontró ningún vehículo con esa placa.\n";
+}
+
+void consultarClientePorCedula() {
+    string cedula;
+    cout << "Ingrese la cédula del cliente: ";
+    cin >> cedula;
+
+    for (int i = 0; i < totalClientes; i++) {
+        if (clientes[i].cedula == cedula) {
+            mostrarDatosCliente(clientes[i]);
+            return;
+        }
+    }
+    cout << "No se encontró ningún cliente con esa cédula.\n";
+}
+
+void consultarRepuestoPorModeloAnio() {
+    string modelo;
+    int anio;
+    cout << "Ingrese el modelo del repuesto: ";
+    cin >> modelo;
+    cout << "Ingrese el año de compatibilidad: ";
+    cin >> anio;
+
+    
